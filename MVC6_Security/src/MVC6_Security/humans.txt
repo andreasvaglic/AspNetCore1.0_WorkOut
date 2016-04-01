@@ -1,0 +1,7 @@
+Add [Authorize] attribute on Secure action inside Home Controller
+401 
+Kako dodat mogucnost da se logiras
+a.) Moras dodati middleware koji radi sa cookies
+	  "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final"
+b.)
+ 
