@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNet.Http.Authentication;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,8 +48,6 @@ namespace MVC6_Security.Controllers
                 
                 //Claim identity will be in the cookie and every time when you login in cookie will be regenerate
                 //you will get claims and you can use than in your User object
-
-               
                 await HttpContext.Authentication.SignInAsync("Cookies", new ClaimsPrincipal(id));
 
                 //Redirect to returnUrl but we wont to be sure that this is local Url that is not changed
@@ -62,7 +61,23 @@ namespace MVC6_Security.Controllers
         public async Task<IActionResult> LogOut(string returnUrl = null)
         {
             await HttpContext.Authentication.SignOutAsync("Cookies");
-            return RedirectToAction("Index", "Home");
+            return Redirect("/");
+        }
+
+        public IActionResult ExternalLogIn(string provider, string returnUrl = null)
+        {
+            var properties = new AuthenticationProperties()
+            {
+                RedirectUri = returnUrl
+            };
+            //Bug is existing here so we need to define redirect url like a property
+            //and than provide that property in login request.
+
+            //One way of doing request:
+            //await HttpContext.Authentication.ChallengeAsync("Google",properties);
+
+            //This is easier way because we are using MVC method that is internally calling method above 
+            return new ChallengeResult(provider, properties);
         }
     }
 }

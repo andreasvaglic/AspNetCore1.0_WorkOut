@@ -7,6 +7,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNet.Authentication.Cookies;
+using Microsoft.AspNet.Authentication.Google;
 
 namespace MVC6_Security
 {
@@ -56,28 +57,37 @@ namespace MVC6_Security
             //    AutomaticChallenge = true
             //});
 
+
+            //Google auth.
+            //https://console.developers.google.com/apis/credentials?project=mvcsecutiryworkout
+            //You need to define Authorized redirect URIs on Google page and enable Google+ API
+            //default redirect URI that need to be define is http://localhost:52506/signin-google
+            //app.UseGoogleAuthentication(options =>
+            //{
+            //    options.AuthenticationScheme = "Google";
+            //    options.SignInScheme = "Cookies";
+            //    options.ClientId = "781644176920-4smb90rptgavjf28qrvrcth0imrgel8s.apps.googleusercontent.com";
+            //    options.ClientSecret = "mMb4kX4MXthl7eVXjWxa0dKi";
+            //}); 
+            app.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = "781644176920-4smb90rptgavjf28qrvrcth0imrgel8s.apps.googleusercontent.com",
+                ClientSecret = "mMb4kX4MXthl7eVXjWxa0dKi",
+                AuthenticationScheme = "Google",
+                //With SignInScheme property we are defining what middle-ware will continue to process data when
+                //is back from external provider
+                SignInScheme = "Cookies"
+                //If you define redirect page on this way the process will not work because you will be always
+                //redirected to Google again
+                //CallbackPath = "/Home/Secure/"
+            });
+
+
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
         }
-        //public void Configure(IApplicationBuilder app)
-        //{
-        //    app.UseIISPlatformHandler();
-
-        //    app.UseCookieAuthentication(new CookieAuthenticationOptions
-        //    {
-        //        LoginPath = "/account/login",
-
-        //        AuthenticationScheme = "Cookies",
-        //        AutomaticAuthenticate = true,
-        //        AutomaticChallenge = true
-        //    });
-
-        //    app.UseDeveloperExceptionPage();
-        //    app.UseStaticFiles();
-        //    app.UseMvcWithDefaultRoute();
-        //}
 
         // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
