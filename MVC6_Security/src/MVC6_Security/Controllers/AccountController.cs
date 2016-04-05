@@ -68,7 +68,9 @@ namespace MVC6_Security.Controllers
         {
             var properties = new AuthenticationProperties()
             {
-                RedirectUri = returnUrl
+               
+                //If don't need additional data we can go directly to page that is protected
+                RedirectUri = "/Home/Secure"
             };
             //Bug is existing here so we need to define redirect url like a property
             //and than provide that property in login request.
@@ -78,6 +80,52 @@ namespace MVC6_Security.Controllers
 
             //This is easier way because we are using MVC method that is internally calling method above 
             return new ChallengeResult(provider, properties);
+        }
+
+        public IActionResult ExternalLogInWithCallback(string provider, string returnUrl = null)
+        {
+            var properties = new AuthenticationProperties()
+            {
+                //We set this so that we intercept data that is coming back from social login
+                RedirectUri = "/Account/Register"
+            };
+            //Bug is existing here so we need to define redirect url like a property
+            //and than provide that property in login request.
+
+            //One way of doing request:
+            //await HttpContext.Authentication.ChallengeAsync("Google",properties);
+
+            //This is easier way because we are using MVC method that is internally calling method above 
+            return new ChallengeResult(provider, properties);
+        }
+
+        public async Task<IActionResult> Register()
+        {
+            //Getting claims from social login
+            var extId = await HttpContext.Authentication.AuthenticateAsync("Temp");
+
+            //Check the id of external user
+            //If user Exist you can directly SignIn
+            //If not exist you can force him to enter some additional data that app. need so that he 
+            //can became your user
+     
+            //Login functionality like in Login Action above
+            var claims = new List<Claim>()
+                {
+                    new Claim("sub","123Google"),
+                    new Claim("name",extId.FindFirst(ClaimTypes.Name).Value),
+                    new Claim("email",extId.FindFirst(ClaimTypes.Email).Value),
+                    new Claim("role","Geek")
+                };
+            var id = new ClaimsIdentity(claims, "password");
+            await HttpContext.Authentication.SignInAsync("Cookies", new ClaimsPrincipal(id));
+            
+            //We need to destroy that Temp cookie that we created because he was practically 
+            //just container for data
+            await HttpContext.Authentication.SignOutAsync("Temp");
+            return Redirect("/home/secure");
+
+
         }
     }
 }

@@ -23,7 +23,13 @@
                     </div>
                 </div>
             </form>
-            <a href="/Account/ExternalLogIn?returnUrl=@ViewData["ReturnUrl"]&provider=Google">Log in with Google</a>
+            <div><a href="/Account/ExternalLogIn?returnUrl=@ViewData["ReturnUrl"]&provider=Google">Log in with Google</a></div>
+            <br />
+            <div>
+                Uncomment AuthenticationScheme = "GoogleWithCallback" in Startup.cs and comment AuthenticationScheme = "Google"
+                <br />
+                <a href="/Account/ExternalLogInWithCallback?returnUrl=@ViewData["ReturnUrl"]&provider=GoogleWithCallback">Google login with callback </a>
+            </div>
         </section>
     </div>
 </div>

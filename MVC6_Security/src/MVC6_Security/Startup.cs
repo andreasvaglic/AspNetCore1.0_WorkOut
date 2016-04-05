@@ -58,36 +58,53 @@ namespace MVC6_Security
             //});
 
 
+            #region External Auth with Callback
+            //This is the pattern when we wont to intercept data that was coming back from social login
+            //and enter some additional data about User
+            app.UseCookieAuthentication(options =>
+            {
+                options.AuthenticationScheme = "Temp";
+                //This is just temporary cookie so we don't need AutomaticAuthenticate property to be true
+                options.AutomaticAuthenticate = false;
+
+            });
+            #endregion
+
             #region Google provider
             //Google auth.
             //https://console.developers.google.com/apis/credentials?project=...
             //You need to define Authorized redirect URIs on Google page and enable Google+ API
             //default redirect URI that need to be define is http://localhost:.../signin-google
-            //app.UseGoogleAuthentication(options =>
-            //{
-            //    options.AuthenticationScheme = "Google";
-            //    options.SignInScheme = "Cookies";
-            //    options.ClientId = "781644176920-4smb90rptgavjf28qrvrcth0imrgel8s.apps.googleusercontent.com";
-            //    options.ClientSecret = "mMb4kX4MXthl7eVXjWxa0dKi";
-            //}); 
-            app.UseGoogleAuthentication(new GoogleOptions()
+
+            //You can't define two middle-wares of the same social login no mater if they have different
+            //AuthenticationScheme name always the first defined will be used
+            app.UseGoogleAuthentication(options =>
             {
-                ClientId = "...",
-                ClientSecret = "...",
-                AuthenticationScheme = "Google",
-                //With SignInScheme property we are defining what middle-ware will continue to process data when
-                //is back from external provider
-                SignInScheme = "Cookies"
-                //If you define redirect page on this way the process will not work because you will be always
-                //redirected to Google again
-                //CallbackPath = "/Home/Secure/"
+                options.AuthenticationScheme = "Google";
+                options.SignInScheme = "Cookies";
+                options.ClientId = "...";
+                options.ClientSecret = "...";
             });
+            //app.UseGoogleAuthentication(new GoogleOptions()
+            //{
+            //    ClientId = "...",
+            //    ClientSecret = "...",
+            //    AuthenticationScheme = "GoogleWithCallback",
+            //    //With SignInScheme property we are defining what middle-ware will continue to process data when
+            //    //is back from external provider
+            //    SignInScheme = "Temp"
+            //    //If you define redirect page on this way the process will not work because you will be always
+            //    //redirected to Google again
+            //    //CallbackPath = "/Home/Secure/"
+            //});
+            #endregion
+
 
 
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute(); 
-            #endregion
+           
 
         }
 
