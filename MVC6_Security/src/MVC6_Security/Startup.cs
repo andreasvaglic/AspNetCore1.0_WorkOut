@@ -100,7 +100,7 @@ namespace MVC6_Security
             //});
             #endregion
 
-            //How to modify user claims in the fly
+            //How to modify user claims on the fly
             app.UseClaimsTransformation(user =>
             {
                 user.Identities.First().AddClaim(new Claim("now", DateTime.Now.ToString()));
