@@ -73,9 +73,9 @@ namespace MVC6_Security
 
             #region Google provider
             //Google auth.
-            //https://console.developers.google.com/apis/credentials?project=mvcsecutiryworkout
+            //https://console.developers.google.com/apis/credentials?project=...
             //You need to define Authorized redirect URIs on Google page and enable Google+ API
-            //default redirect URI that need to be define is http://localhost:52506/signin-google
+            //default redirect URI that need to be define is http://localhost:.../signin-google
 
             //You can't define two middle-wares of the same social login no mater if they have different
             //AuthenticationScheme name always the first defined will be used
@@ -83,13 +83,13 @@ namespace MVC6_Security
             {
                 options.AuthenticationScheme = "Google";
                 options.SignInScheme = "Cookies";
-                options.ClientId = "781644176920-4smb90rptgavjf28qrvrcth0imrgel8s.apps.googleusercontent.com";
-                options.ClientSecret = "mMb4kX4MXthl7eVXjWxa0dKi";
+                options.ClientId = "...";
+                options.ClientSecret = "...";
             });
             //app.UseGoogleAuthentication(new GoogleOptions()
             //{
-            //    ClientId = "781644176920-4smb90rptgavjf28qrvrcth0imrgel8s.apps.googleusercontent.com",
-            //    ClientSecret = "mMb4kX4MXthl7eVXjWxa0dKi",
+            //    ClientId = "...",
+            //    ClientSecret = "...",
             //    AuthenticationScheme = "GoogleWithCallback",
             //    //With SignInScheme property we are defining what middle-ware will continue to process data when
             //    //is back from external provider
