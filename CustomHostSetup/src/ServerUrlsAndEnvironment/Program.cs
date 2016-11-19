@@ -20,6 +20,7 @@ namespace ServerUrlsAndEnvironment
 
             //var environment = configuration["ASPNETCORE_ENVIRONMENT"];
 
+
             var host = new WebHostBuilder()
                 .UseKestrel()
                 //.UseConfiguration(configuration)
