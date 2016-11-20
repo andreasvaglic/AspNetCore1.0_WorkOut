@@ -14,8 +14,6 @@
 
 **Green boxes** are showing result of the path where both default configuration's for server listening port and environment are overridden by values defined in environment variables.
 
-</br>
-
 Using env. Variables without _MYVALUES alias:
 
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart1.svg)
