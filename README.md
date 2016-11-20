@@ -1,4 +1,4 @@
-# Override startup host configuration for Server listening url's and environment using environment variables
+# Override startup host configuration for Server listening urls and environment using environment variables
 
 ### Create environment variables for machine and user ([Using PowerShell](https://technet.microsoft.com/en-us/library/ff730964.aspx)) :
 
@@ -10,9 +10,9 @@
 | MYVALUES_SERVER.URLS            | http://localhost:5400 |
 </br>
 
->**Please click on images** to use links for navigating to code.
+>**Please click on images below** to use links to navigate to code.
 
-**Green boxes** are showing result of the path where both default configuration's for server listening port and environment are overridden by values defined in environment variables.
+**Green boxes** are showing results of the path where both default configuration for server listening port and environment are overridden by values defined in environment variables.
 
 ---
 Using env. Variables without _MYVALUES alias:
@@ -25,7 +25,7 @@ Using env. Variables with _MYVALUES alias:
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart2.svg)
 
 ---
-Some additional links that help me to create charts and code:
+Some additional links that helped me to create charts and code:
 
 * [How to set the hosting environment in ASP.NET Core](http://andrewlock.net/how-to-set-the-hosting-environment-in-asp-net-core/)
 * [How to configure urls for Kestrel, WebListener and IIS express in ASP.NET Core](http://andrewlock.net/configuring-urls-with-kestrel-iis-and-iis-express-with-asp-net-core/)
