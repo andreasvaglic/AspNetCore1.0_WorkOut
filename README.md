@@ -18,10 +18,12 @@
 Using env. Variables without _MYVALUES alias:
 
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart1.svg)
+
 ---
 Using env. Variables with _MYVALUES alias:
 
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart2.svg)
+
 ---
 Some additional links that help me to create charts and code:
 
