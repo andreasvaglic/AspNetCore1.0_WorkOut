@@ -13,6 +13,7 @@
 >**Please click on images** to use links for navigating to code.
 
 **Green boxes** are showing result of the path where both default configuration's for server listening port and environment are overridden by values defined in environment variables.
+
 ---
 Using env. Variables without _MYVALUES alias:
 
