@@ -1,8 +1,6 @@
 # Override startup host configuration for Server listening url's and environment using environment variables
 
-### Create environment variables for machine and user:
-[How to create env. Variables using PowerShell](https://technet.microsoft.com/en-us/library/ff730964.aspx)
-
+### Create environment variables for machine and user ([Using PowerShell](https://technet.microsoft.com/en-us/library/ff730964.aspx)) :
 
 | *Name*                          | *Value*               |
 | ------------------------------- |:---------------------:|
@@ -12,9 +10,16 @@
 | MYVALUES_SERVER.URLS            | http://localhost:5400 |
 </br>
 
+>**Green boxes are showing result of the path where both default configuration's for server listening port and environment are overridden by values defined in environment variables.**
+
+Using env. Variables without _MYVALUES alias:
+
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart1.svg)
 
+Using env. Variables with _MYVALUES alias:
+
 ![alt text](https://cdn.rawgit.com/AMatijevic/AspNetCore1.0_WorkOut/SetupServerUrlsAndDefaultEnvironment/CustomHostSetup/src/ServerUrlsAndEnvironment/Charts/Chart2.svg)
+Please click on images to use links for navigation to code.
 
 Some additional links that help me to create charts and code:
 
