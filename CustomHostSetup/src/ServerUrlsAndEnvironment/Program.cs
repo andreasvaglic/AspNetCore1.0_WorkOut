@@ -16,6 +16,7 @@ namespace ServerUrlsAndEnvironment
             var configuration = new ConfigurationBuilder()
                 //.AddEnvironmentVariables()
                 //.AddEnvironmentVariables("MYVALUES_")
+
                 .Build();
 
             //var environment = configuration["ASPNETCORE_ENVIRONMENT"];
